@@ -1,0 +1,16 @@
+@import "../../assets/styles/variables";
+
+.layout_wrapper {
+  // background-color: #ccc;
+  // padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  // border: 1px solid #000;
+  h2 {
+    padding-top: 20px;
+    font-size: 6vw;
+    text-align: center;
+    text-transform: capitalize;
+    // letter-spacing: 0.1em;
+  }
+}

@@ -1,0 +1,40 @@
+@import "../../../assets/styles/variables";
+
+.button {
+  &:hover {
+    background-color: darken($yellow, 10%);
+    box-shadow: rgba(0, 0, 0, 0.29) 8px 9px 32px;
+  }
+  &:active {
+    background-color: darken($yellow, 15%);
+  }
+}
+
+.regular {
+  // background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 23px;
+  letter-spacing: 0.4em;
+  padding-left: 0.4em;
+  text-transform: uppercase;
+  // font-weight: 00;
+}
+
+.form_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+
+  font-size: 23px;
+  // letter-spacing: 0.4em;
+  // padding-left: 0.4em;
+  text-transform: uppercase;
+}
+
+.wide {
+  width: 200px;
+}

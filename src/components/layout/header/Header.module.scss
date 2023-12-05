@@ -1,0 +1,26 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 55px;
+  & > nav,
+  div {
+    font-size: 34px;
+    padding: 5px;
+    cursor: pointer;
+  }
+}
+
+.back_arrow {
+  // color: #000;
+}
+
+nav {
+  position: relative;
+  .drop_menu {
+    right: 50%;
+    position: absolute;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+  }
+}

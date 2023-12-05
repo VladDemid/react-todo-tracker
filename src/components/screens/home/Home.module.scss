@@ -1,0 +1,47 @@
+@import "../../../assets/styles/media_mixins.scss";
+
+.promo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, calc(-50% - 10vh), 0);
+  // border: 1px solid #000;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 200;
+  letter-spacing: -2px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  text-wrap: balance;
+  line-height: 1.1em;
+  font-size: 3.5em;
+  // font-size: 10vw;
+  span {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: 600;
+    // font-style: italic;
+    font-size: 1.4em;
+  }
+}
+
+.FcTodoList {
+  border: 1px solid #000;
+}
+
+.button_wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  // border: 1px solid #000;
+  transform: translate3d(-50%, calc(-50% + 10vh), 0);
+  max-width: 60%;
+}
+
+.promo {
+  @include _600 {
+    font-size: 10vw;
+  }
+}
