@@ -1,8 +1,7 @@
-import { useAuth } from "../components/hooks/useAuth";
 import { $axios } from "./api";
 
 //* getProfile|updateProfile|?getTodos?
-const { todos, setTodos } = useAuth();
+
 const TodoService = {
   getProfile() {
     // const newUserData = await $axios.get(`/users/profile`);
@@ -12,7 +11,8 @@ const TodoService = {
 
   async createTodo(todoData) {
     try {
-      const { data } = $axios.post(`todos/`, todoData);
+      console.log(todoData);
+      const { data } = await $axios.post(`todos/`, todoData);
       console.log(data);
       return data;
     } catch (err) {

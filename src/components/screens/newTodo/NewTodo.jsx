@@ -4,8 +4,12 @@ import styles from "./NewTodo.module.scss";
 import Button from "../../ui/button/Button";
 import TextArea from "../../ui/form-elements/TextArea";
 import { useMutation } from "@tanstack/react-query";
+import TodoService from "../../../services/todo.service";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function NewTodo() {
+  const { user } = useAuth();
+
   const {
     register,
     control,
@@ -24,13 +28,19 @@ export default function NewTodo() {
   });
 
   const onSubmit = (formData) => {
-    // console.log(formData);
     mutate(formData);
   };
 
   const { mutate } = useMutation({
-    mutationFn: () => {
-      return console.log(123);
+    mutationFn: (todoData) => {
+      return TodoService.createTodo(todoData);
+    },
+    mutationKey: ["create todo"],
+    onSuccess: () => {
+      console.log("success");
+    },
+    onError: () => {
+      console.log("error");
     },
   });
 

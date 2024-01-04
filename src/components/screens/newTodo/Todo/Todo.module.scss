@@ -1,0 +1,88 @@
+@import "src/assets/styles/variables";
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+  position: relative;
+  padding: 10px;
+  width: 100%;
+  background-color: $light-grey;
+  border-radius: 10px;
+  color: #000;
+  border: 3px solid $error;
+  overflow: hidden;
+  &.done {
+    border: 3px solid $success;
+  }
+
+  &.open {
+    background-color: #000;
+  }
+  & > * {
+    flex-grow: 2;
+    flex-basis: 0;
+    // border: 1px solid #000;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    .edit {
+      display: block;
+    }
+    .more {
+      right: -0%;
+    }
+  }
+  .duration {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .more {
+    position: absolute;
+    display: flex;
+    // flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid $dark-yellow;
+    background-color: $yellow;
+    right: -20.5%;
+    top: 0px;
+    height: 100%;
+    width: 25%;
+    transition: right 0.2s;
+    border-radius: 10px 0 0 10px;
+    font-size: 40px;
+    cursor: pointer;
+    & > * {
+      // border: 1px solid #000;
+      // width: 50%;
+      transition: transform 0.1s;
+      background-color: transparent;
+      // border: 1px solid #000;
+      &:hover {
+        transform: scale(1.15);
+      }
+    }
+
+    .close {
+      color: $error;
+    }
+    .check {
+      color: $success;
+    }
+    .edit {
+      // font-size: 80%;
+      // position: absolute;
+      // top: 10px;
+      // left: 10px;
+      // font-size: 30px;
+      // display: none;
+    }
+  }
+  .small {
+    font-size: 0.7em;
+  }
+}

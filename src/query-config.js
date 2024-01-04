@@ -9,10 +9,12 @@ const queryConfig = {
     queries: {
       refetchOnWindowFocus: false,
       enabled: false,
+      retry: false,
     },
     mutations: {
       refetchOnWindowFocus: false,
       enabled: false,
+      retry: false,
     },
   },
 };

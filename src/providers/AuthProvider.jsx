@@ -7,9 +7,16 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(!!Cookies.get("token"));
   const [user, setUser] = useState(null);
+  const [todos, setTodos] = useState(null);
+
+  // useEffect(() => {
+  //   console.log("user changed");
+  // }, [user]);
 
   return (
-    <AuthContext.Provider value={{ isAuth, setIsAuth, user, setUser }}>
+    <AuthContext.Provider
+      value={{ isAuth, setIsAuth, user, setUser, todos, setTodos }}
+    >
       {children}
     </AuthContext.Provider>
   );

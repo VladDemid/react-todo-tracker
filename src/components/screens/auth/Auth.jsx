@@ -8,7 +8,7 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
 export default function Auth() {
-  const [authState, setAuthState] = useState("login");
+  const [authState, setAuthState] = useState("registration");
   const changeAuthState = () => {
     setAuthState(authState === "login" ? "registration" : "login");
     // console.log(authState);

@@ -6,6 +6,7 @@ import AuthService from "../../../services/auth.service";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import useAuthPage from "./useAuthPage";
 
 export default function RegisterForm({ changeAuthState }) {
   const {
@@ -16,31 +17,10 @@ export default function RegisterForm({ changeAuthState }) {
     formState: { errors },
     getValues,
   } = useForm({
-    defaultValues: {
-      name: "Vladislav",
-      email: "mr.zgot1@yandex.ru",
-      password: "123456",
-    },
     mode: "onChange",
   });
 
-  const { setIsAuth, setUser } = useAuth();
-  const navigate = useNavigate();
-
-  const { mutate } = useMutation({
-    mutationFn: (formData) => {
-      AuthService.authUser(formData, "registration");
-    },
-    onSuccess: () => {
-      setIsAuth(true);
-      reset();
-      navigate("/profile");
-    },
-  });
-
-  const onSubmit = (formData) => {
-    mutate(formData);
-  };
+  const { onSubmit } = useAuthPage("registration");
 
   return (
     <>

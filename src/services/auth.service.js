@@ -9,9 +9,13 @@ const AuthService = {
   async authUser(formData, type) {
     try {
       const { data } = await $axios.post(`auth/${type}`, formData);
-      // const { data } = await $axios.post(`auth/loginn`, formData);
-      console.log("axios data: ", data);
-      if (data.token) Cookies.set("token", data.token);
+
+      if (data.token) {
+        Cookies.set("token", data.token, { expires: 7 });
+        console.log("token was set", data.token.slice(0, 10));
+      } else {
+        console.log("token NOT FOUND");
+      }
       return data;
     } catch (err) {
       throw new Error(err);

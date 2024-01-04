@@ -1,5 +1,6 @@
 import Auth from "../components/screens/auth/Auth";
 import Home from "../components/screens/home/Home";
+import MyTodos from "../components/screens/myTodos/MyTodos";
 import NewTodo from "../components/screens/newTodo/NewTodo";
 import NotFound from "../components/screens/not-found/NotFound";
 import Profile from "../components/screens/profile/Profile";
@@ -26,11 +27,11 @@ export const routesData = [
     private: true,
   },
 
-  // {
-  //   path: "my-todos",
-  //   element: Profile,
-  //   private: true,
-  // },
+  {
+    path: "my-todos",
+    element: MyTodos,
+    private: true,
+  },
   {
     path: "*",
     element: NotFound,

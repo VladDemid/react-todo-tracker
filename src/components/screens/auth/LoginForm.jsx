@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
-import { useAuth } from "../../hooks/useAuth";
 import AuthService from "../../../services/auth.service";
+import { useAuth } from "../../hooks/useAuth";
+import useAuthPage from "./useAuthPage";
 
 export default function LoginForm({ changeAuthState }) {
   const {
@@ -15,52 +16,13 @@ export default function LoginForm({ changeAuthState }) {
     control,
     handleSubmit,
     getValues,
-    reset,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      email: "mr.zgot@yandex.ru",
-      password: "123456",
-    },
     mode: "onChange",
   });
 
-  const navigate = useNavigate();
-  const { setIsAuth, setUser } = useAuth();
+  const { onSubmit } = useAuthPage("login");
 
-  const { data, mutate, mutateAsync } = useMutation({
-    mutationFn: (formData) => {
-      return AuthService.authUser(formData, "login");
-    },
-    mutationKey: ["login"],
-    onSuccess: () => {
-      console.log("useMutate onSuccess");
-      setIsAuth(true);
-      reset();
-      navigate("/profile");
-    },
-    onError: () => {
-      console.log("useMutate onError");
-    },
-  });
-
-  const onSubmit = async (formData) => {
-    console.log("start onSubmit");
-    mutateAsync(formData, {
-      onSuccess: () => {
-        console.log("mutate onSuccess");
-      },
-      onError: () => {
-        console.log("mutate onError!");
-      },
-    })
-      .then(() => {
-        console.log("then");
-      })
-      .catch((err) => {
-        console.log("catch");
-      });
-  };
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
