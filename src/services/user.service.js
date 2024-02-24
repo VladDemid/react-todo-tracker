@@ -3,8 +3,6 @@ import { $axios } from "./api";
 
 //* getProfile|updateProfile|?getTodos?
 export default function UserService() {
-  const { setIsAuth, setUser } = useAuth();
-
   function testUser(data) {
     return axios.get("https://jsonplaceholder.typicode.com/posts");
   }

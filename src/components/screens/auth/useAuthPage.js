@@ -1,33 +1,43 @@
 import { useNavigate } from "react-router-dom";
 import AuthService from "../../../services/auth.service";
-import { useAuth } from "../../hooks/useAuth";
-import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setIsAuthOn } from "../../../store/userSlice/userSlice";
+import {
+  setIsAuthOn,
+  setUser,
+} from "../../../store/features/userSlice/userSlice";
+import { useAuthMutation } from "../../../store/api/todoApi";
+import Cookies from "js-cookie";
+import { setTodos } from "../../../store/features/todoSlice/todoSlice";
+import { toast } from "react-toastify";
+import useToastPromise from "../../hooks/useToastPromise";
+import { useEffect } from "react";
 
-const useAuthPage = (type) => {
-  const { setIsAuth, setUser } = useAuth();
+const useAuthPage = (type, setIsLoading) => {
   const navigate = useNavigate();
   const { reset } = useForm();
   const dispatch = useDispatch();
+  const [login, result] = useAuthMutation();
+  useEffect(() => {
+    console.log(result.isLoading);
+  }, [result.isLoading]);
+  // const toastPromise = useToastPromise();
 
-  const onSubmit = (formData, type) => {
-    mutate(formData, type);
+  const onSubmitAuth = (formData, type) => {
+    setIsLoading(true);
+    const toastPromise = useToastPromise(login(formData).unwrap(), "Login");
+    toastPromise()
+      .then((resp) => {
+        Cookies.set("token", resp.token, { expires: 7 });
+        dispatch(setUser(resp));
+        dispatch(setTodos(resp.todos));
+        navigate("/profile");
+      })
+      .catch((rejected) => console.error(rejected))
+      .finally(() => setIsLoading(false));
   };
 
-  const { mutate, isLoading } = useMutation({
-    mutationFn: (formData) => {
-      return AuthService.authUser(formData, type);
-    },
-    mutationKey: ["auth"],
-    onSuccess: () => {
-      setIsAuth(true); //! убрать
-      reset();
-      navigate("/profile");
-    },
-  });
-  return { onSubmit };
+  return { onSubmitAuth };
 };
 
 export default useAuthPage;

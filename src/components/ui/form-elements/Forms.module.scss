@@ -1,22 +1,27 @@
 @import "src/assets/styles/_variables.scss";
-
-// $spacing: 20px;
-// $input-height: 50px;
+@import "./checkbox.scss";
 input,
 textarea {
   display: block;
   background-color: $light-grey;
+  // background-color: transparent;
   border-radius: 10px;
-  border: 2px solid darken($light-grey, 25%);
+  border: none;
   height: $input-height;
   width: 100%;
   padding: $form-spacing;
-
+  cursor: default;
   outline: none;
   font-size: 25px;
+  resize: none;
+  @include shadow;
   &:focus + .floating_label {
     top: 0%;
   }
+}
+
+.label {
+  display: none;
 }
 
 textarea {
@@ -33,11 +38,6 @@ textarea {
   margin-bottom: 20px;
   width: 100%;
 
-  // input:focus ~ .floating_label,
-  // input:not(:focus):valid ~ .floating_label {
-  //   top: 0;
-  // }
-
   .floating_label {
     pointer-events: none;
     display: block;
@@ -45,23 +45,33 @@ textarea {
     left: $form-spacing;
     top: calc($input-height / 2);
     transition: all 0.25s;
-    // color: darken($light-grey, 20%);
     color: #000;
+    font-weight: 500;
     transform: translateY(-50%);
     backdrop-filter: blur(2px);
-    // border: 1px solid #000;
     padding: 3px;
     height: 1em;
-    // width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    // height: 20px;
-
-    // border: 1px solid #000;
     &.active {
       top: 0%;
     }
+  }
+
+  .uncover_eye {
+    position: absolute;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+    top: 30%;
+    font-size: 24px;
+    right: 20px;
+    color: #000;
+    cursor: pointer;
+    user-select: none;
   }
 }
 
@@ -69,5 +79,4 @@ textarea {
   display: block;
   color: red;
   margin-left: 10px;
-  // font-size: 1em;
 }

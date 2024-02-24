@@ -1,7 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,100;0,200;0,400;0,500;0,700;0,900;1,200;1,600&display=swap");
-
 $yellow: rgba(253, 204, 49, 1);
-$dark-yellow: darken($yellow, 10%);
+$dark: rgb(37, 31, 8);
+$dark10-yellow: darken($yellow, 10%);
+$dark20-yellow: darken($yellow, 20%);
+$dark30-yellow: darken($yellow, 30%);
+// $very-dark-yellow: darken($yellow, 20%);
 $light-grey: rgba(246, 246, 246, 1);
 $form-spacing: 20px;
 $input-height: 50px;
@@ -9,5 +11,19 @@ $success: #74d673;
 $error: #f7665f;
 
 @mixin shadow {
-  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 15px 0px $dark30-yellow;
+}
+
+@mixin shadow_hover {
+  box-shadow: 0px 5px 10px 0px $dark30-yellow;
+}
+
+@mixin shadow_active {
+  box-shadow: 0px 5px 5px 0px $dark30-yellow;
+}
+
+@mixin flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

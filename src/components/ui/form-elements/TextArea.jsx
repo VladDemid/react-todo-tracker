@@ -15,7 +15,7 @@ export default function TextArea({
       <textarea
         placeholder={placeholder}
         type={type}
-        className={styles.inputText}
+        className={styles.input}
         // placeholder={name}
         {...register(name, options)}
       />

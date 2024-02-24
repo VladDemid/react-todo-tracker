@@ -8,10 +8,9 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
 export default function Auth() {
-  const [authState, setAuthState] = useState("registration");
+  const [authState, setAuthState] = useState("login");
   const changeAuthState = () => {
     setAuthState(authState === "login" ? "registration" : "login");
-    // console.log(authState);
   };
 
   return (
@@ -24,7 +23,18 @@ export default function Auth() {
         )}
       </div>
       {/* <DevTool control={control}></DevTool> */}
-      <div className={styles.create_account}></div>
+      {/* <div className={styles.create_account}></div> */}
+      <div className={styles.create_account}>
+        <div>
+          Already have account?
+          <span
+            className={styles.register_button}
+            onClick={() => changeAuthState()}
+          >
+            Sign in!
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

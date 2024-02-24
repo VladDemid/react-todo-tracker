@@ -1,12 +1,8 @@
-import { useAuth } from "../../hooks/useAuth";
-import { useQuery } from "@tanstack/react-query";
 import { $axios } from "../../../services/api";
 import Cookies from "js-cookie";
 import axios from "axios";
 
 const useProfile = () => {
-  const { setUser } = useAuth();
-
   async function getProfile() {
     const token = Cookies.get("token");
     if (token) {
@@ -20,18 +16,18 @@ const useProfile = () => {
         },
       });
       console.log(resp.data.todos);
-      setUser(resp?.data);
+      //todo SetUser в redux
       return resp;
     }
     return false;
   }
 
-  return useQuery({
-    queryKey: ["get profile"],
-    queryFn: () => getProfile(),
-    select: (data) => data.data,
-    enabled: false,
-  });
+  // return useQuery({
+  //   queryKey: ["get profile"],
+  //   queryFn: () => getProfile(),
+  //   select: (data) => data.data,
+  //   enabled: false,
+  // });
 };
 
 export default useProfile;

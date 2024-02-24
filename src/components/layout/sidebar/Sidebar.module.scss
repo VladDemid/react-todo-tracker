@@ -1,0 +1,117 @@
+@import "../../../assets/styles/variables";
+
+.sidebar {
+  display: none;
+  position: fixed;
+  // padding: 5px;
+  //*display: flex ниже
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  left: 0px;
+  padding: 15px 5px 15px 0;
+  top: 0px;
+  height: 100%;
+  border-radius: 0 10px 10px 0;
+  width: 60px;
+  // border: 3px solid #000;
+  background-color: rgba(0, 0, 0, 0);
+  // @include shadow;
+  transition: 0.2s all;
+  z-index: 10;
+  &.opened {
+    width: 300px;
+    background-color: rgba(253, 204, 49, 1);
+    .nav_button {
+      // justify-content: space-between;
+      // padding: 0 15px;
+      a {
+        position: relative;
+        border: 1px solid #000;
+        // text-align: right;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 15px;
+        height: 100%;
+        // overflow: hidden;
+        .title {
+          display: block;
+          position: absolute;
+          top: calc(50% - 18px);
+          right: -5%;
+          width: 300px;
+          height: 100%;
+          // position: absolute;
+          // display: block;
+          // color: #000;
+          // font-size: 30px;
+        }
+      }
+    }
+  }
+
+  > * {
+    width: 100%;
+  }
+
+  button,
+  .nav_button {
+    position: relative;
+    @include flex_center;
+    width: 100%;
+    font-size: 34px;
+    border-radius: 0 10px 10px 0;
+    // width: 50px;
+    // margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.2);
+    a {
+      @include flex_center;
+      // border: 1px solid #000;
+      color: $dark;
+      .title {
+        display: none;
+      }
+    }
+    &.toggle {
+      background-color: $dark10-yellow;
+    }
+  }
+
+  nav {
+    flex-grow: 1;
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      // border: 1px solid #000;
+      align-self: stretch;
+      li {
+        @include shadow;
+        border-radius: 10px;
+        // width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+        // margin: 0 auto;
+        &.add_todo a {
+          // transform: rotate(45deg);
+          font-size: 1.2em;
+          // border: 1px solid #000;
+        }
+      }
+    }
+  }
+
+  .logout {
+    // align-self: end;
+    background-color: $error;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    // display: block;
+    display: flex;
+  }
+}

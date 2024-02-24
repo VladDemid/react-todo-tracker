@@ -1,18 +1,17 @@
 import Cookies from "js-cookie";
-import { useAuth } from "../../hooks/useAuth";
+import { logOut } from "../../../store/features/userSlice/userSlice";
+import { useDispatch } from "react-redux";
 
 const useMenu = () => {
-  const { setIsAuth, setUser } = useAuth();
+  const dispatch = useDispatch();
 
   const onExit = () => {
-    Cookies.remove("token");
-    setIsAuth(false);
-    setUser(null);
+    dispatch(logOut());
   };
 
   const menuList = [
-    { title: "create", link: "new-todo" },
-    { title: "my todos", link: "new-todo" },
+    { title: "create new", link: "new-todo" },
+    { title: "my todos", link: "my-todos" },
     { title: "exit", link: "/", onClickFn: onExit },
   ];
 

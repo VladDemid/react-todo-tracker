@@ -5,60 +5,77 @@
   justify-content: space-between;
   user-select: none;
   position: relative;
-  padding: 10px;
+  // padding: 0 10px;
   width: 100%;
   background-color: $light-grey;
   border-radius: 10px;
   color: #000;
-  border: 3px solid $error;
   overflow: hidden;
+  @include shadow;
   &.done {
-    border: 3px solid $success;
+    color: #ccc;
+    > * {
+      text-decoration: line-through;
+    }
+    .edit {
+      opacity: 0.3;
+    }
+    .id {
+      text-decoration: none;
+    }
   }
 
-  &.open {
-    background-color: #000;
-  }
   & > * {
-    flex-grow: 2;
-    flex-basis: 0;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     // border: 1px solid #000;
+    flex-grow: 3;
+    flex-basis: 0;
     overflow: hidden;
     white-space: nowrap;
   }
 
   &:hover {
     .edit {
-      display: block;
-    }
-    .more {
-      right: -0%;
+      opacity: 1;
     }
   }
-  .duration {
+  .id {
+    color: #000;
     flex-grow: 1;
+    // font-weight: 600;
+    font-weight: bold;
+    min-width: 26px;
+    border-right: 2px solid $dark10-yellow;
+  }
+  .title {
+    padding-left: 10px;
+    flex-grow: 9;
+    text-align: left;
+    justify-content: start;
+  }
+
+  .duration {
+    // flex-grow: 1;
     text-align: center;
+    font-weight: bold;
+  }
+
+  .edit {
+    // flex-grow: 6;
+    // border: 1px solid #000;
   }
 
   .more {
-    position: absolute;
     display: flex;
-    // flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border: 2px solid $dark-yellow;
-    background-color: $yellow;
-    right: -20.5%;
-    top: 0px;
-    height: 100%;
-    width: 25%;
-    transition: right 0.2s;
-    border-radius: 10px 0 0 10px;
+    width: 100%;
     font-size: 40px;
     cursor: pointer;
     & > * {
-      // border: 1px solid #000;
-      // width: 50%;
       transition: transform 0.1s;
       background-color: transparent;
       // border: 1px solid #000;
@@ -73,13 +90,10 @@
     .check {
       color: $success;
     }
-    .edit {
-      // font-size: 80%;
-      // position: absolute;
-      // top: 10px;
-      // left: 10px;
-      // font-size: 30px;
-      // display: none;
+
+    .delete {
+      font-size: 90%;
+      color: #000;
     }
   }
   .small {

@@ -3,14 +3,40 @@
 .layout_wrapper {
   // background-color: #ccc;
   // padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   max-width: 600px;
+  height: 100%;
   margin: auto;
-  // border: 1px solid #000;
+
+  & > * {
+    // border: 1px solid #000;
+  }
   h2 {
     padding-top: 20px;
-    font-size: 6vw;
+    font-size: 8vw;
     text-align: center;
     text-transform: capitalize;
     // letter-spacing: 0.1em;
+  }
+  main {
+    // border: 2px dashed #000;
+    flex-grow: 1;
+  }
+
+  .name {
+    margin: 0 auto 200px;
+    color: #000;
+    font-size: 30px;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 480px) {
+  .layout_wrapper {
+    h2 {
+      font-size: 38px;
+    }
   }
 }

@@ -1,0 +1,29 @@
+@import "./variables";
+
+@property --opacity {
+  syntax: "<number>"; /* <- defined as type number for the transition to work */
+  initial-value: 0;
+  inherits: false;
+}
+
+html {
+  --s: 20vw; /* control the size */
+  --z: 20vw;
+  box-shadow: 0px 0px 50px 30px #f9bd02 inset;
+  animation: myAnim 2s infinite;
+  // --s: 150px; /* control the size */
+  --_g: #0000 90deg, #f9bd02 0;
+  background: conic-gradient(from 116.56deg at calc(100% / 3) 0, var(--_g)),
+    conic-gradient(from -63.44deg at calc(200% / 3) 100%, var(--_g))
+      rgba(253, 204, 49, 1);
+  background-size: var(--s) var(--s);
+}
+
+@keyframes myAnim {
+  0% {
+    --z: 20vw;
+  }
+  100% {
+    --z: 40vw;
+  }
+}
