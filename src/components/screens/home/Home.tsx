@@ -9,15 +9,6 @@ export default function Home() {
   // const isAuth = useSelector((state) => state.user.isAuth);
   const name = useSelector((state: RootState) => state.user.user?.name);
   const inputRef = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    const inputEl = document.getElementById(
-      "inputEl"
-    ) as HTMLInputElement | null;
-    console.log(inputEl);
-    inputEl?.addEventListener("input", (e) => {
-      console.log(e.target.value);
-    });
-  });
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
