@@ -1,28 +1,41 @@
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import { routesData } from "./routes-data";
-import { useAuth } from "../components/hooks/useAuth";
-import useProfile from "../components/screens/profile/useProfile";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { todoApi } from "../store/api/todoApi";
+import { setUser } from "../store/features/userSlice/userSlice";
+import { setTodos } from "../store/features/todoSlice/todoSlice";
 
 export default function Router() {
-  const { isAuth } = useAuth();
-  const { refetch } = useProfile();
+  const [getProfile, result, lastPromiseInfo] =
+    todoApi.useLazyGetProfileQuery();
+  const dispatch = useDispatch();
+
+  const refetch = () => {
+    //получить данные профиля в случае перезагрузки страницы
+    getProfile()
+      .unwrap()
+      .then((resp) => {
+        dispatch(setTodos(resp));
+        dispatch(setUser(resp));
+      })
+      .catch((err) => console.error(err));
+  };
+  // const dispatch = useDispatch()
+  // dispatch(useGetProfileQuery())
+  const isAuth = useSelector((state) => state.user.isAuth);
 
   useEffect(() => {
-    // console.log("isAuth", isAuth);
-    // console.log("token", Cookies.get("token"));
-
     if (isAuth) {
-      // console.log("fire!");
       refetch();
     }
   }, [isAuth]);
 
   return (
     <BrowserRouter>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={1300} style={{}} />
       <Routes>
         <Route path="/" element={<Layout />}>
           {routesData.map((route) => {

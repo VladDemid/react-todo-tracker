@@ -3,9 +3,7 @@ import Button from "../../ui/button/Button";
 import Field from "../../ui/form-elements/Field";
 import styles from "./Auth.module.scss";
 import AuthService from "../../../services/auth.service";
-import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 import useAuthPage from "./useAuthPage";
 
 export default function RegisterForm({ changeAuthState }) {
@@ -18,12 +16,18 @@ export default function RegisterForm({ changeAuthState }) {
     getValues,
   } = useForm({
     mode: "onChange",
+    defaultValues: {
+      name: "Vlad",
+      email: "mr.zgot@yandex.ru",
+      password: "123456",
+    },
   });
 
   const { onSubmit } = useAuthPage("registration");
 
   return (
     <>
+      <h2>Registration</h2>
       {/* <div className="test">{isLoading && <h2>isLoading...</h2>}</div>
       <div className="test">{data && <h2>data ready</h2>}</div> */}
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -69,7 +73,7 @@ export default function RegisterForm({ changeAuthState }) {
         />
         <Button text="register" type="form_button" />
       </form>
-      <div className={styles.create_account}>
+      {/* <div className={styles.create_account}>
         <div>
           Already have account?
           <span
@@ -79,7 +83,7 @@ export default function RegisterForm({ changeAuthState }) {
             Sign in!
           </span>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

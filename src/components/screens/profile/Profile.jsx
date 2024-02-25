@@ -1,8 +1,5 @@
-import AuthProvider from "../../../providers/AuthProvider";
-import { useAuth } from "../../hooks/useAuth";
 import styles from "./Profile.module.scss";
 import Button from "../../ui/button/Button";
-import useProfile from "./useProfile";
 import { useEffect } from "react";
 
 export default function Profile() {

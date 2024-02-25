@@ -1,7 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./Button.module.scss";
+import clsx from "clsx";
 
-export default function Button({ text, type = "regular", link }) {
+export default function Button({
+  text,
+  type = "regular",
+  link,
+  disabled = false,
+}) {
   const navigate = useNavigate();
 
   const buttonNavigate = () => {
@@ -14,7 +20,8 @@ export default function Button({ text, type = "regular", link }) {
 
   return (
     <button
-      className={`${styles.button} ${styles[type]}`}
+      disabled={disabled}
+      className={clsx(styles.button, styles[type], "button")}
       onClick={() => buttonNavigate()}
     >
       {text}

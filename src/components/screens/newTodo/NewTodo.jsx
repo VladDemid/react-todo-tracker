@@ -3,12 +3,15 @@ import Field from "../../ui/form-elements/Field";
 import styles from "./NewTodo.module.scss";
 import Button from "../../ui/button/Button";
 import TextArea from "../../ui/form-elements/TextArea";
-import { useMutation } from "@tanstack/react-query";
 import TodoService from "../../../services/todo.service";
-import { useAuth } from "../../hooks/useAuth";
+import useToastPromise from "../../hooks/useToastPromise";
+import { useDispatch } from "react-redux";
+import { useAddTodoMutation } from "../../../store/api/todoApi";
+import { addTodoReducer } from "../../../store/features/todoSlice/todoSlice";
+import { useState } from "react";
 
 export default function NewTodo() {
-  const { user } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -26,23 +29,26 @@ export default function NewTodo() {
     },
     mode: "onChange",
   });
+  const [addTodo, addResult] = useAddTodoMutation();
+  const dispatch = useDispatch();
 
   const onSubmit = (formData) => {
-    mutate(formData);
-  };
+    const toastPromise = useToastPromise(
+      addTodo(formData).unwrap(),
+      "add todo"
+    );
 
-  const { mutate } = useMutation({
-    mutationFn: (todoData) => {
-      return TodoService.createTodo(todoData);
-    },
-    mutationKey: ["create todo"],
-    onSuccess: () => {
-      console.log("success");
-    },
-    onError: () => {
-      console.log("error");
-    },
-  });
+    setIsLoading(true);
+    toastPromise()
+      .then((resp) => {
+        console.log("resp:", resp);
+        dispatch(addTodoReducer(resp));
+      })
+      .catch((err) => {
+        throw new Error("Add todo error:", err);
+      })
+      .finally(() => setIsLoading(false));
+  };
 
   // duration | todo_type (выбирается из набора) | comment
   return (
@@ -62,24 +68,33 @@ export default function NewTodo() {
           }}
           errors={errors}
         />
-        <Field
-          type="number"
-          register={register}
-          getValues={getValues}
-          name="duration"
-          tip="duration [min]"
-          isRequired={true}
-          options={{
-            required: "required",
-            min: {
-              value: 5,
-              message: `must be no less than 5`,
-            },
-          }}
-          errors={errors}
-        />
-        {/* //! переделать на react SELECT */}
-        <Field
+        <div className={styles.input_pair}>
+          <Field
+            type="number"
+            register={register}
+            getValues={getValues}
+            name="duration"
+            tip="duration [min]"
+            isRequired={true}
+            options={{
+              required: "required",
+              min: {
+                value: 5,
+                message: `must be no less than 5`,
+              },
+            }}
+            errors={errors}
+          />
+          <Field
+            type="checkbox"
+            register={register}
+            getValues={getValues}
+            name="no timer"
+          />
+        </div>
+        {/* //! переделать на react SELECT  */}
+        {/* //* временно убрано */}
+        {/* <Field
           register={register}
           getValues={getValues}
           name="theme"
@@ -92,9 +107,9 @@ export default function NewTodo() {
             },
           }}
           errors={errors}
-        />
+        /> */}
         <TextArea
-          placeholder="comment"
+          placeholder="Comment"
           register={register}
           getValues={getValues}
           name="comment"
@@ -102,7 +117,7 @@ export default function NewTodo() {
           errors={errors}
         />
         {/* <textarea {...register("comment")}></textarea> */}
-        <Button text="create"></Button>
+        <Button text="create" disabled={isLoading}></Button>
       </form>
     </div>
   );

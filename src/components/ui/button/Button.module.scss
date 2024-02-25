@@ -1,14 +1,14 @@
 @import "../../../assets/styles/variables";
 
-.button {
-  &:hover {
-    background-color: darken($yellow, 10%);
-    box-shadow: rgba(0, 0, 0, 0.29) 8px 9px 32px;
-  }
-  &:active {
-    background-color: darken($yellow, 15%);
-  }
-}
+// .button {
+//   &:hover {
+//     background-color: darken($yellow, 10%);
+//     box-shadow: rgba(0, 0, 0, 0.29) 8px 9px 32px;
+//   }
+//   &:active {
+//     background-color: darken($yellow, 15%);
+//   }
+// }
 
 .regular {
   // background-color: #000;

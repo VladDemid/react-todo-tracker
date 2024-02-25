@@ -2,9 +2,9 @@
 import axios from "axios";
 import { $axios } from "./api.js";
 import Cookies from "js-cookie";
-import { useAuth } from "../components/hooks/useAuth.js";
 
 //* register|login|logout
+//todo удалить этот файл
 const AuthService = {
   async authUser(formData, type) {
     try {
