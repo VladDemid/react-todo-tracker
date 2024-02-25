@@ -8,14 +8,6 @@ import { RootState } from "../../../store/store";
 export default function Home() {
   // const isAuth = useSelector((state) => state.user.isAuth);
   const name = useSelector((state: RootState) => state.user.user?.name);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (inputRef.current) {
-      console.log(inputRef.current.value);
-    }
-  }
 
   return (
     <>
@@ -32,7 +24,6 @@ export default function Home() {
         ) : (
           <Button text="login" link="/auth"></Button>
         )}
-        <input id="inputEl" ref={inputRef} type="text" name="test" />
       </div>
     </>
   );
