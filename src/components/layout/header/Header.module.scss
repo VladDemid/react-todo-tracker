@@ -20,8 +20,8 @@ header {
       justify-content: center;
       align-items: center;
       font-size: 34px;
-      height: 38px !important;
-      width: 38px;
+      height: 50px;
+      width: 50px;
       min-width: auto;
       // background-color: transparent;
       // @include shadow // border-radius: 10px;
@@ -51,14 +51,14 @@ nav {
     background-color: $light-grey;
     color: #000;
     border-radius: 5px;
-    width: 150px;
+    width: 250px;
     overflow: hidden;
     li {
       position: relative;
-      font-size: 24px;
+      font-size: 34px;
       // font-weight: bold;
       text-align: center;
-      height: 40px;
+      height: 60px;
       border-bottom: 1px solid #000;
       &:last-child {
         border: none;
@@ -90,12 +90,19 @@ nav {
   }
 
   100% {
-    height: 120px;
+    height: 180px;
   }
 }
 
 @media (min-width: 768px) {
   header {
-    display: none;
+    .back_arrow,
+    .header_nav {
+      display: none;
+    }
+    .name {
+      width: 100%;
+      text-align: center;
+    }
   }
 }

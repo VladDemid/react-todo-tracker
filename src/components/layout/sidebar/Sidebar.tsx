@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styles from "./Sidebar.module.scss";
-import { useState } from "react";
 import {
   IoAdd,
   IoArrowBack,
@@ -12,17 +11,18 @@ import {
   IoPersonOutline,
 } from "react-icons/io5";
 import clsx from "clsx";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
 export default function Sidebar() {
-  const [isOpened, setIsOpened] = useState(true);
+  const { isShow, ref, setIsShow } = useOnClickOutside(false);
 
   return (
-    <div className={clsx(styles.sidebar, isOpened && styles.opened)}>
+    <div className={clsx(styles.sidebar, isShow && styles.opened)} ref={ref}>
       <button
         className={clsx(styles.toggle, "button")}
-        onClick={() => setIsOpened(!isOpened)}
+        onClick={() => setIsShow(!isShow)}
       >
-        {isOpened ? <IoClose /> : <IoMenu />}
+        {isShow ? <IoClose /> : <IoMenu />}
       </button>
       {/* <button className={styles.back} onClick={() => {}}>
         <IoArrowBack />
