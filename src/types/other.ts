@@ -4,19 +4,8 @@ export enum PagePaths {
   "MyTodo" = "/my-todos",
 }
 
-enum Specs {
-  Director = "director",
-  Worker = "worker",
-}
+export type todoSortTypes = "newest" | "oldest";
+export type sortOption = { title: string; value: todoSortTypes };
+export type eventSortType = { target: { value: todoSortTypes } };
 
-interface User {
-  name: string;
-  spec: Specs;
-}
-
-const user123: User = {
-  name: "Vlad",
-  spec: Specs.Worker,
-};
-
-console.log(user123);
+// export type todoFilterOptions
