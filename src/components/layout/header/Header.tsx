@@ -10,7 +10,7 @@ import { RootState } from "../../../store/store";
 import clsx from "clsx";
 
 export default function Header() {
-  const { isShow, ref, setIsShow } = useOnClickOutside(true);
+  const { isShow, ref, setIsShow } = useOnClickOutside(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { menuList } = useMenu();
