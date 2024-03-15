@@ -12,6 +12,8 @@ export type Todo = {
   //* todo_type: string; // убрано
 };
 
+export type TodoList = Todo[];
+
 export type TodoProps = {
   todo: Todo;
 };

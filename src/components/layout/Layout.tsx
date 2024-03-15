@@ -11,11 +11,13 @@ import { RootState } from "../../store/store";
 export default function Layout() {
   const location = useLocation();
   const user = useSelector((state: RootState) => state.user?.user);
+  const isProfilePage =
+    location.pathname !== "/" && location.pathname !== "/auth";
 
   return (
     <div className={styles.layout_wrapper}>
-      {location.pathname !== "/" && location.pathname !== "/auth" && <Header />}
-      <Sidebar />
+      {isProfilePage && <Header />}
+      {isProfilePage && <Sidebar />}
       {/* {headings[location.pathname] && <h2>{headings[location.pathname]}</h2>} */}
       {/* {children && <div>{children}</div>} */}
       <main>

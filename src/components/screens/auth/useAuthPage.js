@@ -18,9 +18,6 @@ const useAuthPage = (type, setIsLoading) => {
   const { reset } = useForm();
   const dispatch = useDispatch();
   const [login, result] = useAuthMutation();
-  useEffect(() => {
-    console.log(result.isLoading);
-  }, [result.isLoading]);
   // const toastPromise = useToastPromise();
 
   const onSubmitAuth = (formData, type) => {

@@ -1,0 +1,33 @@
+@import "src/assets/styles/_variables.scss";
+
+.react_select {
+  color: #000;
+  // border: 3px solid #000;
+  .react_select__control {
+    // border: 3px solid #000;
+  }
+  // display: inline-block;
+  .react_select__input {
+    box-shadow: none;
+  }
+  .react_select__value-container {
+    color: #000;
+  }
+  .react_select__menu-list {
+    padding: 0;
+    .react_select__option {
+      &:hover {
+        background-color: $light-yellow;
+      }
+      .react_select__option--is-selected,
+      .react_select__option--is-focused {
+        background-color: orange;
+      }
+      // border: 1px solid #000;
+      // color: #000;
+    }
+  }
+  // select {
+  //   // display: none;
+  // }
+}

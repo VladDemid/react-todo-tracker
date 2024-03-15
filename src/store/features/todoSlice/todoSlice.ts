@@ -9,10 +9,11 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     setTodos(state, action) {
+      // console.log("setTodos");
       return action.payload.todos;
     },
     sortTodos(state, action: { payload: { sortType: todoSortTypes } }) {
-      console.log("sort todos: ", action.payload.sortType);
+      // console.log("sort todos reducer: ", action.payload.sortType);
       let sortedTodos;
       if (action.payload.sortType === "oldest") {
         sortedTodos = [...current(state)].toSorted((a, b) => a.id - b.id);

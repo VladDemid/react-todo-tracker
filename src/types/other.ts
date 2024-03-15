@@ -5,7 +5,8 @@ export enum PagePaths {
 }
 
 export type todoSortTypes = "newest" | "oldest";
-export type sortOption = { title: string; value: todoSortTypes };
+export type sortOption = { label: string; value: todoSortTypes };
+export type SelectProps = { options: sortOption[] };
 export type eventSortType = { target: { value: todoSortTypes } };
 
 // export type todoFilterOptions

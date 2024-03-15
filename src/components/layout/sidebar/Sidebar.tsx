@@ -12,9 +12,16 @@ import {
 } from "react-icons/io5";
 import clsx from "clsx";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../../store/features/userSlice/userSlice";
 
 export default function Sidebar() {
   const { isShow, ref, setIsShow } = useOnClickOutside(false);
+  const dispatch = useDispatch();
+  // function onExit() {
+  //   dispatch(logOut());
+  //   location.href = "/";
+  // }
 
   return (
     <div className={clsx(styles.sidebar, isShow && styles.opened)} ref={ref}>
@@ -24,9 +31,6 @@ export default function Sidebar() {
       >
         {isShow ? <IoClose /> : <IoMenu />}
       </button>
-      {/* <button className={styles.back} onClick={() => {}}>
-        <IoArrowBack />
-      </button> */}
       <nav>
         <ul>
           <li className={clsx(styles.my_todos, styles.nav_button, "button")}>
@@ -49,9 +53,13 @@ export default function Sidebar() {
           </li>
         </ul>
       </nav>
-      <button className={clsx(styles.logout, "button")}>
+      <Link
+        to="/"
+        className={clsx(styles.logout, "button", styles.nav_button)}
+        onClick={() => dispatch(logOut())}
+      >
         <IoExitOutline />
-      </button>
+      </Link>
     </div>
   );
 }
