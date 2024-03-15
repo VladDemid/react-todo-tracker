@@ -7,7 +7,8 @@
     "dev": "vite --host --port 3006",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
@@ -28,6 +29,8 @@
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
     "@types/js-cookie": "^3.0.6",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
