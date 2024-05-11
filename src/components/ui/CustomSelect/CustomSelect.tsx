@@ -21,7 +21,7 @@ export default function CustomSelect({ options }: SelectProps) {
     <div className="custom_select">
       <Select
         options={options}
-        defaultMenuIsOpen={true}
+        defaultMenuIsOpen={false}
         classNamePrefix="react_select"
         className="react_select"
         styles={colourStyles}

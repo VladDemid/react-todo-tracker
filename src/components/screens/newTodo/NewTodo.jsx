@@ -3,7 +3,6 @@ import Field from "../../ui/form-elements/Field";
 import styles from "./NewTodo.module.scss";
 import Button from "../../ui/button/Button";
 import TextArea from "../../ui/form-elements/TextArea";
-import TodoService from "../../../services/todo.service";
 import useToastPromise from "../../hooks/useToastPromise";
 import { useDispatch } from "react-redux";
 import { useAddTodoMutation } from "../../../store/api/todoApi";

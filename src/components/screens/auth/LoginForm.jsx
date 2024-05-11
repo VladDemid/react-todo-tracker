@@ -5,7 +5,6 @@ import styles from "./Auth.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import AuthService from "../../../services/auth.service";
 import useAuthPage from "./useAuthPage";
 
 export default function LoginForm({ changeAuthState }) {

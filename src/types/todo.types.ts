@@ -7,6 +7,9 @@ export type Todo = {
   is_done: boolean;
   created_at: string;
   updated_at: string;
+  date?: any; //!
+  newDay?: boolean;
+  dateFormatted: any;
   //* theme: string;     //убрано
   //* deferred: false;   //убрано
   //* todo_type: string; // убрано

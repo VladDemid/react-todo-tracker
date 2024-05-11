@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import Button from "../../ui/button/Button";
 import Field from "../../ui/form-elements/Field";
 import styles from "./Auth.module.scss";
-import AuthService from "../../../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import useAuthPage from "./useAuthPage";
 
