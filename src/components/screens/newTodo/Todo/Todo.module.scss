@@ -1,5 +1,12 @@
 @import "src/assets/styles/variables";
 
+.todo_wrapper {
+  .day_separator {
+    text-decoration: underline;
+    margin-top: -10px;
+  }
+}
+
 .todo {
   display: flex;
   justify-content: space-between;

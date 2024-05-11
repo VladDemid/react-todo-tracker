@@ -9,8 +9,25 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     setTodos(state, action) {
-      // console.log("setTodos");
-      return action.payload.todos;
+      console.log("setTodos");
+      // console.log(action.payload.todos);
+      //! добавление даты своего формата сделать на этапе создания объекта
+      let todos = action.payload.todos.map((todo: Todo, idx: number) => {
+        const dateFormatted = todo.created_at.split("T")[0].split("-");
+        return { ...todo, dateFormatted: dateFormatted };
+      });
+
+      todos.forEach((todo: Todo, idx: number) => {
+        // console.log(todos[idx - 1]);
+        todo.newDay =
+          idx === 0 || todo.dateFormatted[2] !== todos[idx - 1].dateFormatted[2]
+            ? true
+            : false;
+      });
+
+      console.log(todos);
+      //!
+      return todos;
     },
     sortTodos(state, action: { payload: { sortType: todoSortTypes } }) {
       // console.log("sort todos reducer: ", action.payload.sortType);
