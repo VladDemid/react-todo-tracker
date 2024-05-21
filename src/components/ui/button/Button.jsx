@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 export default function Button({
   text,
-  type = "regular",
+  size = "regular",
   link,
   disabled = false,
 }) {
@@ -21,7 +21,7 @@ export default function Button({
   return (
     <button
       disabled={disabled}
-      className={clsx(styles.button, styles[type], "button")}
+      className={clsx(styles.button, styles[size], "button")}
       onClick={() => buttonNavigate()}
     >
       {text}

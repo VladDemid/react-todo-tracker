@@ -12,22 +12,39 @@ export const todoSlice = createSlice({
       console.log("setTodos");
       // console.log(action.payload.todos);
       //! добавление даты своего формата сделать на этапе создания объекта
-      let todos = action.payload.todos.map((todo: Todo, idx: number) => {
-        const dateFormatted = todo.created_at.split("T")[0].split("-");
-        return { ...todo, dateFormatted: dateFormatted };
-      });
+      //Todo обернуть это в middleware какой-нить
 
-      todos.forEach((todo: Todo, idx: number) => {
-        // console.log(todos[idx - 1]);
-        todo.newDay =
-          idx === 0 || todo.dateFormatted[2] !== todos[idx - 1].dateFormatted[2]
+      //добавление
+      let todos: Todo[] = action.payload.todos.map(
+        (todo: Todo, idx: number) => {
+          const dateArray = todo.created_at.split("T")[0].split("-");
+          // console.log(dateArray);
+          return { ...todo, dateArray };
+        }
+      );
+
+      let todosDates = action.payload.todos.map((todo: Todo, idx: number) => {
+        const dateFormatted = todo.created_at.split("T")[0].split("-");
+
+        return { dateFormatted: dateFormatted };
+      });
+      // console.log("todosDates:", todosDates);
+
+      const newTodos = todos.map((todo: Todo, idx: number) => {
+        //* добавление триггера нового дня для разделителя
+        // console.log(new Date(todo.created_at));
+        const newDay =
+          idx === 0 ||
+          todosDates[idx].dateFormatted[2] !==
+            todosDates[idx - 1].dateFormatted[2]
             ? true
             : false;
+        return { ...todo, newDay };
       });
 
-      console.log(todos);
+      console.log(newTodos);
       //!
-      return todos;
+      return newTodos;
     },
     sortTodos(state, action: { payload: { sortType: todoSortTypes } }) {
       // console.log("sort todos reducer: ", action.payload.sortType);

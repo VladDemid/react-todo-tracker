@@ -13,7 +13,7 @@ export default function Todo({ todo }: TodoProps) {
     <div className={styles.todo_wrapper}>
       {todo.newDay && (
         <h3 className={styles.day_separator}>
-          {todo.dateFormatted[2]} {months[1]}
+          {todo.dateArray[2]} {months[todo.dateArray[1] - 1]}
         </h3>
       )}
       <div
@@ -21,10 +21,11 @@ export default function Todo({ todo }: TodoProps) {
           [styles.done]: todo.is_done,
         })}
       >
-        <div className={styles.id}>{todo.id}</div>
+        {/* <div className={styles.id}>{todo.id}</div> */}
         <h3 className={styles.title}>
-          {/* {todo.title} */}
-          {todo.dateFormatted[2]}, {String(todo.newDay)}
+          {todo.title}
+          {/* {new Date(todo.created_at).toString()} */}
+          {/* {todo.dateFormatted[2]}, {String(todo.newDay)} */}
         </h3>
         {/* <div className={styles.is_done}>{todo.is_done ? "done" : "undone"}</div> */}
         <div className={styles.duration}>

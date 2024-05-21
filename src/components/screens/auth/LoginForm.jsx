@@ -18,10 +18,7 @@ export default function LoginForm({ changeAuthState }) {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    defaultValues: {
-      email: "mr.zgot@yandex.ru",
-      password: "123456",
-    },
+    defaultValues: JSON.parse(import.meta.env.VITE_DEF_LOG_VAL || "{}"),
   });
 
   const { onSubmitAuth } = useAuthPage("login", setIsLoading);
@@ -29,7 +26,7 @@ export default function LoginForm({ changeAuthState }) {
   return (
     <>
       <h2>Log in</h2>
-      <form onSubmit={handleSubmit((data) => onSubmitAuth(data))}>
+      <form onSubmit={handleSubmit((data) => onSubmitAuth(data, "login"))}>
         <Field
           register={register}
           getValues={getValues}
@@ -59,7 +56,7 @@ export default function LoginForm({ changeAuthState }) {
           }}
           errors={errors}
         />
-        <Button text="sign in" type="form_button" disabled={isLoading} />
+        <Button text="sign in" size="form_button" disabled={isLoading} />
       </form>
       {/* <div className={styles.create_account}>
         <div>

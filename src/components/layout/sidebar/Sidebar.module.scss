@@ -37,25 +37,19 @@
         padding: 0 15px;
         height: 100%;
         // overflow: hidden;
-        .title {
-          display: block;
-          position: absolute;
-          // top: calc(50% - 18px);
-          display: flex;
-          justify-content: end;
-          align-items: center;
-          padding-right: 10px;
-          top: 0px;
-          left: 0;
-          // right: -5%;
-          width: 100%;
-          height: 100%;
-          text-align: right;
-          // position: absolute;
-          // display: block;
-          // color: #000;
-          // font-size: 30px;
-        }
+      }
+      .title {
+        display: block;
+        position: absolute;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        padding-right: 10px;
+        top: 0px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: right;
       }
     }
   }
@@ -71,17 +65,13 @@
     width: 100%;
     font-size: 34px;
     border-radius: 0 10px 10px 0;
-    // width: 50px;
-    // margin: 0 auto;
-    // background-color: rgba(255, 255, 255, 0.2);
     background-color: $light-yellow;
     a {
       @include flex_center;
-      // border: 1px solid #000;
       color: $dark;
-      .title {
-        display: none;
-      }
+    }
+    .title {
+      display: none;
     }
     &.toggle {
       background-color: $dark10-yellow;
@@ -93,27 +83,22 @@
     ul {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      // border: 1px solid #000;
-      align-self: stretch;
+      gap: 10px;
+      height: 100%;
       li {
         @include shadow;
         border-radius: 10px;
-        // width: 50px;
-        height: 50px;
-        margin-bottom: 10px;
-        // margin: 0 auto;
         &.add_todo a {
-          // transform: rotate(45deg);
           font-size: 1.2em;
-          // border: 1px solid #000;
+        }
+        &.exit {
+          margin-top: auto;
         }
       }
     }
   }
 
   .logout {
-    // align-self: end;
     background-color: $error;
   }
 }

@@ -3,10 +3,7 @@ import Todo from "../newTodo/Todo/Todo";
 import TodosList from "./TodosList/TodosList";
 import styles from "./MyTodos.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  sortTodos,
-  setTodos,
-} from "../../../store/features/todoSlice/todoSlice";
+import { sortTodos } from "../../../store/features/todoSlice/todoSlice";
 import { RootState } from "../../../store/store";
 import { eventSortType, sortOption, todoSortTypes } from "../../../types/other";
 import Select from "react-select";

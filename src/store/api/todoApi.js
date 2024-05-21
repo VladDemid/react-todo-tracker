@@ -19,6 +19,13 @@ export const todoApi = createApi({
     getProfile: builder.query({
       query: () => `users/profile`,
     }),
+    registration: builder.mutation({
+      query: (body) => ({
+        url: "auth/registration",
+        method: "POST",
+        body,
+      })
+    }),
     auth: builder.mutation({
       query: (body) => ({
         url: "auth/login",
@@ -53,6 +60,7 @@ export const todoApi = createApi({
 export const {
   useLazyGetProfileQuery,
   useAuthMutation,
+  useRegistrationMutation,
   useAddTodoMutation,
   useToggleTodoMutation,
   useDeleteTodoMutation,

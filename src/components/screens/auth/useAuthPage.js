@@ -5,7 +5,10 @@ import {
   setIsAuthOn,
   setUser,
 } from "../../../store/features/userSlice/userSlice";
-import { useAuthMutation } from "../../../store/api/todoApi";
+import {
+  useAuthMutation,
+  useRegistrationMutation,
+} from "../../../store/api/todoApi";
 import Cookies from "js-cookie";
 import { setTodos } from "../../../store/features/todoSlice/todoSlice";
 import { toast } from "react-toastify";
@@ -16,17 +19,21 @@ const useAuthPage = (type, setIsLoading) => {
   const navigate = useNavigate();
   const { reset } = useForm();
   const dispatch = useDispatch();
-  const [login, result] = useAuthMutation();
-  // const toastPromise = useToastPromise();
+  const [login, loginResult] = useAuthMutation();
+  const [registration, RegistrationResult] = useRegistrationMutation();
 
   const onSubmitAuth = (formData, type) => {
     setIsLoading(true);
-    const toastPromise = useToastPromise(login(formData).unwrap(), "Login");
+
+    const toastPromise = useToastPromise(
+      (type === "login" ? login(formData) : registration(formData)).unwrap(),
+      type
+    );
     toastPromise()
       .then((resp) => {
         Cookies.set("token", resp.token, { expires: 7 });
         dispatch(setUser(resp));
-        dispatch(setTodos(resp.todos));
+        dispatch(setTodos(resp));
         navigate("/profile");
       })
       .catch((rejected) => console.error(rejected))

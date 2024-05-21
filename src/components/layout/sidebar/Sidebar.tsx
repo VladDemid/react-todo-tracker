@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 import { logOut } from "../../../store/features/userSlice/userSlice";
 
 export default function Sidebar() {
-  const { isShow, ref, setIsShow } = useOnClickOutside(false);
+  const { isShow, ref, setIsShow } = useOnClickOutside(true);
   const dispatch = useDispatch();
   // function onExit() {
   //   dispatch(logOut());
@@ -51,15 +51,26 @@ export default function Sidebar() {
               <IoPersonOutline />
             </Link>
           </li>
+          <li className={clsx(styles.exit, styles.nav_button, "button")}>
+            <Link
+              to="/"
+              className={clsx(styles.logout, "button", styles.nav_button)}
+              onClick={() => dispatch(logOut())}
+            >
+              <span className={styles.title}>exit</span>
+              <IoExitOutline />
+            </Link>
+          </li>
         </ul>
       </nav>
-      <Link
+      {/* <Link
         to="/"
         className={clsx(styles.logout, "button", styles.nav_button)}
         onClick={() => dispatch(logOut())}
       >
+        <span className={styles.title}>exit</span>
         <IoExitOutline />
-      </Link>
+      </Link> */}
     </div>
   );
 }

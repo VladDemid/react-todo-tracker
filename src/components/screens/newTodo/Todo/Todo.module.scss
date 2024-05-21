@@ -2,8 +2,10 @@
 
 .todo_wrapper {
   .day_separator {
-    text-decoration: underline;
+    // text-decoration: underline;
     margin-top: -10px;
+    color: #000;
+    margin-left: calc(1 / 10 * 100%);
   }
 }
 
@@ -53,6 +55,7 @@
     color: #000;
     flex-grow: 1;
     // font-weight: 600;
+    color: #ccc;
     font-weight: bold;
     min-width: 26px;
     border-right: 2px solid $dark10-yellow;

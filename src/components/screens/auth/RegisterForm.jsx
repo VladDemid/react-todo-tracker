@@ -4,8 +4,11 @@ import Field from "../../ui/form-elements/Field";
 import styles from "./Auth.module.scss";
 import { useNavigate } from "react-router-dom";
 import useAuthPage from "./useAuthPage";
+import { useEffect, useState } from "react";
 
 export default function RegisterForm({ changeAuthState }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     control,
@@ -15,21 +18,19 @@ export default function RegisterForm({ changeAuthState }) {
     getValues,
   } = useForm({
     mode: "onChange",
-    defaultValues: {
-      name: "Vlad",
-      email: "mr.zgot@yandex.ru",
-      password: "123456",
-    },
+    defaultValues: JSON.parse(import.meta.env.VITE_DEF_REG_VAL || "{}"),
   });
 
-  const { onSubmit } = useAuthPage("registration");
+  // const { onSubmit } = useAuthPage("registration");
+  const { onSubmitAuth } = useAuthPage("registration", setIsLoading);
 
   return (
     <>
       <h2>Registration</h2>
-      {/* <div className="test">{isLoading && <h2>isLoading...</h2>}</div>
-      <div className="test">{data && <h2>data ready</h2>}</div> */}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+      <form
+        onSubmit={handleSubmit((data) => onSubmitAuth(data, "registration"))}
+      >
         <Field
           name="name"
           register={register}
@@ -70,7 +71,7 @@ export default function RegisterForm({ changeAuthState }) {
           }}
           errors={errors}
         />
-        <Button text="register" type="form_button" />
+        <Button text="register" size="form_button" disabled={isLoading} />
       </form>
       {/* <div className={styles.create_account}>
         <div>

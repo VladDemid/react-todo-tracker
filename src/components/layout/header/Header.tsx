@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import { IoArrowBack, IoClose, IoMenu } from "react-icons/io5";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
